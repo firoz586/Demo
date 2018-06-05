@@ -14,7 +14,7 @@
 
 <h2 color="red">${errormsg}</h2>
 
-<form action="login" method="post">
+<form action="Userlogin" method="post">
 <tr><td>emailid : <input type="text" name="emailid" required>
 </td></tr>
 <tr><td>

@@ -11,10 +11,11 @@
 <a href="./adminlogout">logout</a><br/>
 
 <center>
-<h1>Welcome Admin</h1>
+<h1>Welcome Admin :- ${session} </h1>
+<tr><td> <a href="./viewusers"> View Users </a></li></a> </td></tr></br>
+<tr><td> <a href="./adminchangepassword"> Change Password </a></li></a> </td></tr>
 
-<tr><td> <a href="./viewusers"> View Users </a></li></a> </td></tr>
-
+</br>
 </center>
 </body>
 </html>

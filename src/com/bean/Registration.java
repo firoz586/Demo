@@ -5,7 +5,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-
 @Entity
 @Table
 public class Registration 
@@ -31,7 +30,8 @@ public String getName() {
 public void setName(String name) {
 	this.name = name;
 }
-public String getPassword() {
+ public String getPassword() 
+{
 	return password;
 }
 public void setPassword(String password) {
@@ -49,8 +49,5 @@ public String getAddress() {
 public void setAddress(String address) {
 	this.address = address;
 }
-
-
-
 
 }

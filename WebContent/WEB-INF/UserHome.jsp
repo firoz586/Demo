@@ -7,6 +7,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-Welcome
+Welcome </br>
+User Id : ${Usersession}
+
+
+
+
 </body>
 </html>

@@ -1,12 +1,16 @@
 package com.controllers;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -60,6 +64,7 @@ return mv;
 public ModelAndView ints(@ModelAttribute Registration fb) 
 {
 	FirstModel fm=new FirstModel();
+	
 	int i=fm.insert(fb);
 	
 		if(i==1)
@@ -127,10 +132,55 @@ public ModelAndView userloginrequest(@ModelAttribute Registration fb)
 		 mv.addObject("Usersession",fb.getEmailid());
 		}else if(i==0)
 		{
-			 mv=new ModelAndView("userlogin");
+			 mv=new ModelAndView("Userlogin");
 			mv.addObject("errormsg","Login Failed");			
 		}
 	
 return mv;
 }
+
+
+@RequestMapping("/adminchangepassword")
+public ModelAndView adminchangepassword()
+{
+	mv=new ModelAndView("admin_change_password");
+	return mv;
+}
+
+@RequestMapping("/adminpasswordchanged")
+public ModelAndView admin_password_changed(HttpSession ss,@RequestParam String password)
+{
+	int id=(int)ss.getAttribute("session");
+	
+	int y=new FirstModel().updatePassword(id,password);
+	if(y!=0)
+	{
+		mv=new ModelAndView("admin_change_password");
+		mv.addObject("passwordchanged","password has been changed");
+	}
+	
+	return mv;
+}
+
+@RequestMapping("/AdminCheckOldpwd") 
+public void getoldpassword(HttpServletResponse response,@RequestParam String oldpassword,HttpSession ss)
+{
+			int user=(Integer)ss.getAttribute("session");
+			FirstModel am=new FirstModel();			
+			int x=am.getMyOldPassword(oldpassword,user);
+
+			PrintWriter out = null;
+			try {
+				out = response.getWriter();
+			} 
+			catch (IOException e)
+			{
+			System.out.println(e);
+			e.printStackTrace();
+			}
+		 	out.println(x);	
+		 	System.out.println(x);
+
+	}
+
 }
